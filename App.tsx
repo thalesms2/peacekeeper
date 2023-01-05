@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, FlatList, SafeAreaView } from 'react-native';
+import { StyleSheet, FlatList, SafeAreaView, Text } from 'react-native';
 import Item from './src/Item';
 
 const data = [
@@ -74,6 +74,7 @@ const data = [
 const App = () => {
     return (
         <SafeAreaView style={styles.container}>
+            <Text>Teste</Text>
             <FlatList
                 data={data}
                 renderItem={({ item }) => (

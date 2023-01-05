@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    Pressable,
+    TouchableHighlight,
+} from 'react-native';
 
 interface ItemProps {
     name: string;
@@ -14,34 +21,47 @@ const Item: React.FC<ItemProps> = (props) => {
         item: {
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'space-between',
             width: '100%',
-            marginTop: 10,
-            padding: 10,
+            marginTop: 5,
+            padding: 5,
+            backgroundColor: '#808080',
+        },
+        itemHover: {
+            backgroundColor: 'white',
         },
         image: {
             width: width,
             height: height,
             alignSelf: 'center',
+            borderColor: '#d8d8d8',
+            borderWidth: 0.1,
+        },
+        title: {
+            marginLeft: 10,
+            alignSelf: 'center',
         },
     });
+    const handlePress = () => {
+        console.log('press');
+    };
     Image.getSize(props.url, (x, y) => {
         setWidth(x);
         setHeight(y);
     });
+    const pressProps = {
+        onPress: handlePress,
+        style: styles.item,
+    };
     return (
-        <View style={styles.item}>
+        <TouchableHighlight {...pressProps}>
             <Image
                 source={{
                     uri: props.url,
                 }}
-                style={{
-                    width: width,
-                    height: height,
-                }}
+                style={styles.image}
             />
-            <Text>{props.name}</Text>
-        </View>
+            <Text style={styles.title}>{props.name}</Text>
+        </TouchableHighlight>
     );
 };
 
